@@ -1,0 +1,110 @@
+﻿<Window x:Class="FKR32_assistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FKR32_assistant"
+        xmlns:tb="http://www.hardcodet.net/taskbar" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        WindowStyle="None" Height="800" Width="1355"
+        Background="Transparent" AllowsTransparency="True">
+
+    <Border Background="#015666">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="204"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="64"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="FKR 32" VerticalAlignment="Top"
+                       HorizontalAlignment="Center" Foreground="White"
+                       FontSize="60" Grid.Row="0" Grid.RowSpan="2" Height="74" Width="183"/>
+
+            <StackPanel Grid.Row="2">
+
+                <RadioButton Content="Главная" Height="75" Foreground="White"
+                             FontSize="40" Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Тендер" Height="75" Foreground="White"
+                             FontSize="40" Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Договор" Height="75" Foreground="White"
+                             FontSize="40" Style="{StaticResource MenuButtonTheme}"/>
+
+            </StackPanel>
+
+            <TextBlock Grid.Column="1" Text="Заголовок" Foreground="White" FontSize="20" TextAlignment="Center"
+                       Background="Transparent" HorizontalAlignment="Center" Width="996"/>
+
+            <tb:TaskbarIcon Visibility="Visible" ToolTipText="FKR32" 
+                            IconSource="Images/Logo.ico"
+                            TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown"/>
+
+            <Button Content="-" Grid.Row="0" Grid.Column="1" 
+                    Background="Transparent" Margin="1115,0,0,0"
+                    BorderThickness="0" Click="MinButton_Click"/>
+
+            <StackPanel Background="Transparent" Grid.Column="1" Grid.Row="1" 
+                        Grid.RowSpan="2" Margin="10,10,10,10">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="250"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Сроки проведения электронного аукциона" 
+                               TextAlignment="Center" Grid.Row="0" FontSize="30" 
+                               Foreground="White" Margin="10,0,0,205"/>
+
+                    <TextBlock Text="Дата размещения электронного аукциона" 
+                       Grid.Row="0" FontSize="20" TextWrapping="Wrap" Foreground="White"
+                       Margin="10,40,728,180"/>
+
+                    <Viewbox Grid.Row="0" Margin="10,75,728,138">
+                        <DatePicker  Width="257" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                    </Viewbox>
+                    
+                    <CheckBox HorizontalAlignment="Left" Margin="10,125,0,0" 
+                              VerticalAlignment="Top" Width="16" Height="15" 
+                              FontSize="20" Foreground="White" Checked="CheckBox_Checked">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+
+                    <TextBlock Text="Рассмотрение в день окончания приема заявок" 
+                       Grid.Row="0" FontSize="15" TextWrapping="Wrap" Foreground="White"
+                       Margin="39,124,728,102"/>
+
+                    <ListView Margin="420,50,10,10" Background="Transparent">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Наименование этапа" Width="231" DisplayMemberBinding="{Binding NameStage}"></GridViewColumn>
+                                    <GridViewColumn Header="Дата" Width="231" DisplayMemberBinding="{Binding StageDate}"></GridViewColumn>
+                                    <GridViewColumn Header="День недели" Width="231" DisplayMemberBinding="{Binding DayWeek}"></GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+
+                    </ListView>
+
+                </Grid>
+
+
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
+
+</Window>
