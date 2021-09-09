@@ -73,7 +73,7 @@
                         <DatePicker  Width="257" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                     </Viewbox>
                     
-                    <CheckBox HorizontalAlignment="Left" Margin="10,125,0,0" 
+                    <CheckBox HorizontalAlignment="Left" Margin="10,125,0,0" x:Name="cbFlag" 
                               VerticalAlignment="Top" Width="16" Height="15" 
                               FontSize="20" Foreground="White" Checked="CheckBox_Checked">
                         <CheckBox.LayoutTransform>
@@ -85,7 +85,7 @@
                        Grid.Row="0" FontSize="15" TextWrapping="Wrap" Foreground="White"
                        Margin="39,124,728,102"/>
 
-                    <ListView Margin="420,50,10,10" Background="Transparent">
+                    <ListView Margin="420,50,10,10" Background="Transparent" ItemsSource="{Binding stagesTenders}">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>

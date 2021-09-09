@@ -1,11 +1,10 @@
-﻿using System.Windows;
+﻿using FKR32_assistant.Processing;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FKR32_assistant
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -27,15 +26,22 @@ namespace FKR32_assistant
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-
+            //bool newcbFlag = false;
+            //if (cbFlag.IsChecked == true) newcbFlag = true;
+            //StagesTender flag = new StagesTender();
+            //flag.flag = newcbFlag;
         }
-
-        private string DatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void DatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            string datePickerDate = (sender as DatePicker).SelectedDate.ToString();
-            
-            return datePickerDate;
+            DateTime selectedDate = (DateTime)((DatePicker)sender).SelectedDate;
+            bool flag = false;
+
+            StagesTender stagesTender = new StagesTender();
+            stagesTender.CalculationOfDates(selectedDate, flag);
+
+            this.DataContext = stagesTender;
         }
 
     }
+
 }
