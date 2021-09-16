@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FKR32_assistant.Processing
 
@@ -8,37 +9,45 @@ namespace FKR32_assistant.Processing
     public class StagesTender
     {
 
-        public bool CheckingNoWorkingDays(string date) // проверка на нерабочий день
+        public DateTime CheckingNoWorkingDays(DateTime date) // проверка на нерабочий день
         {
-            string path = @"C:\Git\FKR32_assistant\FKR32_assistant\Docs\WeekendsAndHolidays.txt";
-            bool result = false;
+            DateTime check = date;
+            string[] weekend = new string[2] { "Saturday", "Sunday" }; // создание массива
 
-            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+            string pathHolidays = @"C:\Git\FKR32_assistant\FKR32_assistant\Docs\Holidays.txt";
+            List<string> listWH = new List<string>();
+            StreamReader srHolidays = new StreamReader(pathHolidays, System.Text.Encoding.Default);
+            while (!srHolidays.EndOfStream) listWH.Add(srHolidays.ReadLine()); // создание списка
+
+            bool wik = true;
+            bool hol = true;
+            while (wik == true | hol == true) // цыкл проверки на нерабочий день
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    int count = String.Compare(date, line);
-                    if (count == 1) result = true;
-                }
-
-                return result;
+                string dayOfWeek = check.DayOfWeek.ToString();
+                string dateChecking = check.ToShortDateString();
+                wik = weekend.Contains(dayOfWeek);
+                hol = listWH.Contains(dateChecking);
+                if (wik == true | hol == true) check = check.AddDays(1);
             }
+            
+            DateTime result = check;
+            return result;
+
         }
 
-        public DateTime AddDaysIfNoWorkingDays(DateTime date)  // добавляем дни до понедельника
+        public string DayOfWeekTranslation(DateTime date)
         {
-            DateTime dateTime = date;
-            string stDate = date.ToString();
-            stDate = stDate.Substring(0, stDate.Length - 8);
-            
-            for (int i = 0; i == 2; i++)
+            string dayOfWeek = date.DayOfWeek.ToString();
+            Dictionary<string, string> dic = new Dictionary<string, string>
             {
-                bool flag = CheckingNoWorkingDays(stDate);
-                if (flag == true) dateTime.AddDays(1);
-            }
-
-            return dateTime;
+                ["Monday"] = "Понедельник",
+                ["Tuesday"] = "Вторник",
+                ["Wednesday"] = "Среда",
+                ["Thursday"] = "Четверг",
+                ["Friday"] = "Пятница"
+            };
+            dayOfWeek = dic[dayOfWeek];
+            return dayOfWeek; 
         }
 
         public List<Structures.StagesTenderForListView> stagesTenders { get; set; }
@@ -46,26 +55,75 @@ namespace FKR32_assistant.Processing
         public void CalculationOfDates(DateTime selectDate, bool flag)
         {
             stagesTenders = new List<Structures.StagesTenderForListView>();
-            
-            DateTime dateTime = selectDate.AddDays(20);
+
+            DateTime dateTime = selectDate.AddDays(20); 
+            dateTime = CheckingNoWorkingDays(dateTime);
+            string dayOfWeek = DayOfWeekTranslation(dateTime);
 
             Structures.StagesTenderForListView stage1 = new Structures.StagesTenderForListView
             {
                 NameStage = "Дата окончания приема заявок",
-                StageDate = AddDaysIfNoWorkingDays(dateTime).ToShortDateString(),
-                DayWeek = "Четверг"
+                StageDate = dateTime.ToShortDateString(),
+                DayWeek = dayOfWeek,
             };
 
             stagesTenders.Add(stage1);
 
+            if (flag != true)
+            {
+                dateTime = dateTime.AddDays(1);
+                dateTime = CheckingNoWorkingDays(dateTime);
+                dayOfWeek = DayOfWeekTranslation(dateTime);
+            }
+
+            Structures.StagesTenderForListView stage2 = new Structures.StagesTenderForListView
+            {
+                NameStage = "Дата рассмотрения заявок",
+                StageDate = dateTime.ToShortDateString(),
+                DayWeek = dayOfWeek,
+            };
+
+            stagesTenders.Add(stage2);
+
+            dateTime = dateTime.AddDays(3);
+            dateTime = CheckingNoWorkingDays(dateTime);
+            dayOfWeek = DayOfWeekTranslation(dateTime);
+
+            Structures.StagesTenderForListView stage3 = new Structures.StagesTenderForListView
+            {
+                NameStage = "Дата подведения итогов ЭА",
+                StageDate = dateTime.ToShortDateString(),
+                DayWeek = dayOfWeek,
+            };
+
+            stagesTenders.Add(stage3);
+
+            dateTime = dateTime.AddDays(10);
+            dateTime = CheckingNoWorkingDays(dateTime);
+            dayOfWeek = DayOfWeekTranslation(dateTime);
+
+            Structures.StagesTenderForListView stage4 = new Structures.StagesTenderForListView
+            {
+                NameStage = "Дата начала периода заключения договора",
+                StageDate = dateTime.ToShortDateString(),
+                DayWeek = dayOfWeek,
+            };
+
+            stagesTenders.Add(stage4);
+
+            dateTime = dateTime.AddDays(9);
+            dateTime = CheckingNoWorkingDays(dateTime);
+            dayOfWeek = DayOfWeekTranslation(dateTime);
+
+            Structures.StagesTenderForListView stage5 = new Structures.StagesTenderForListView
+            {
+                NameStage = "Дата окончания периода заключения договора",
+                StageDate = dateTime.ToShortDateString(),
+                DayWeek = dayOfWeek,
+            };
+
+            stagesTenders.Add(stage5);
+
         }
-
-
-        
-
-
-
-
-
     }
 }
