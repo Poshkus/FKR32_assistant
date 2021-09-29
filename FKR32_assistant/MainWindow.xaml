@@ -73,9 +73,11 @@
                         <DatePicker  Width="257" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                     </Viewbox>
                     
-                    <CheckBox HorizontalAlignment="Left" Margin="10,125,0,0" x:Name="cbFlag" 
+                    <CheckBox HorizontalAlignment="Left" Margin="10,125,0,0" 
                               VerticalAlignment="Top" Width="16" Height="15" 
-                              FontSize="20" Foreground="White" Checked="CheckBox_Checked">
+                              FontSize="20" Foreground="White" Checked="CheckBox_Checked"
+                              x:Name="checkBox1" IsThreeState="False" Unchecked="CheckBox_Checked" IsChecked="False">
+                        
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                         </CheckBox.LayoutTransform>

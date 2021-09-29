@@ -8,6 +8,7 @@ namespace FKR32_assistant.Processing
 {
     public class StagesTender
     {
+        //publik bool flag 
 
         public DateTime CheckingNoWorkingDays(DateTime date) // проверка на нерабочий день
         {

@@ -83,6 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Processing\StagesTender.cs" />
+    <Compile Include="Structures\FlagCheckBox.cs" />
     <Compile Include="Structures\StagesTenderForListView.cs" />
     <Compile Include="Structures\WeekendsAndHolidays.cs" />
     <Page Include="MainWindow.xaml">

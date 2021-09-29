@@ -1,4 +1,5 @@
 ﻿using FKR32_assistant.Processing;
+using FKR32_assistant.Structures;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,22 +25,24 @@ namespace FKR32_assistant
             this.Show();
         }
 
+        private bool flag;
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            //bool newcbFlag = false;
-            //if (cbFlag.IsChecked == true) newcbFlag = true;
-            //StagesTender flag = new StagesTender();
-            //flag.flag = newcbFlag;
+            bool newFlag = checkBox1.IsChecked == true;
+            if (newFlag == true)
+                flag = newFlag;
+            else flag = false;
         }
         private void DatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             DateTime selectedDate = (DateTime)((DatePicker)sender).SelectedDate;
-            bool flag = false;
+            bool newFlag = flag;
 
             StagesTender stagesTender = new StagesTender();
             stagesTender.CalculationOfDates(selectedDate, flag);
 
-            this.DataContext = stagesTender;
+            DataContext = stagesTender;
         }
 
     }
