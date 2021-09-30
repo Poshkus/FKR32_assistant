@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31606.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FKR32_assistant", "FKR32_assistant\FKR32_assistant.csproj", "{AE97BCA6-105D-433B-B7BE-6D3734F8A36A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FKR32_assistantTest", "FKR32_assistantTest\FKR32_assistantTest.csproj", "{5747C17D-F688-4945-8EB2-B5E0C24074DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FKR32Test", "FKR32Test\FKR32Test.csproj", "{65A30173-34B2-4929-A94B-58B4E88B7688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{AE97BCA6-105D-433B-B7BE-6D3734F8A36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE97BCA6-105D-433B-B7BE-6D3734F8A36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE97BCA6-105D-433B-B7BE-6D3734F8A36A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5747C17D-F688-4945-8EB2-B5E0C24074DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5747C17D-F688-4945-8EB2-B5E0C24074DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5747C17D-F688-4945-8EB2-B5E0C24074DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5747C17D-F688-4945-8EB2-B5E0C24074DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A30173-34B2-4929-A94B-58B4E88B7688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A30173-34B2-4929-A94B-58B4E88B7688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A30173-34B2-4929-A94B-58B4E88B7688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A30173-34B2-4929-A94B-58B4E88B7688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
